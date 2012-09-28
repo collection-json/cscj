@@ -1,4 +1,4 @@
-CoffeeScript meets Collection+JSON (cscj)
+CoffeeScript meets Collection+JSON (cscj) [![Build Status](https://secure.travis-ci.org/CamShaft/cscj.png)](http://travis-ci.org/CamShaft/cscj)
 =========================================
 
 cscj is a little templating library that makes writing the Collection+JSON media type painless:
