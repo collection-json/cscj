@@ -4,6 +4,7 @@ CoffeeScript meets Collection+JSON (cscj)
 cscj is a little templating library that makes writing the Collection+JSON media type painless:
 
 ```coffee
+# views/index.coffee
 @collection ->
 
   root = "http://localhost:5000"
