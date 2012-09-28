@@ -19,13 +19,13 @@ expectations = (error, result)->
 describe "CoffeeScript Collection+JSON", ->
   it "should render a basic view", (done)->
 
-    cscj "#{__dirname}/views/basic.coffee", {}, (error, result)->
+    cscj.renderFile "#{__dirname}/views/basic.coffee", {}, (error, result)->
       expectations error, result
       done()
 
   it "should render a view with variables", (done)->
 
-    cscj "#{__dirname}/views/variables.coffee", {site: "http://localhost:5000"}, (error, result)->
+    cscj.renderFile "#{__dirname}/views/variables.coffee", {site: "http://localhost:5000"}, (error, result)->
       expectations error, result
       done()
 
@@ -40,12 +40,12 @@ describe "CoffeeScript Collection+JSON", ->
         firstName: "Cameron"
         lastName: "Bytheway"
 
-    cscj "#{__dirname}/views/helpers.coffee", options, (error, result)->
+    cscj.renderFile "#{__dirname}/views/helpers.coffee", options, (error, result)->
       expectations error, result
       done()
 
   it "should give an error when a variable is not in scope", (done)->
-    cscj "#{__dirname}/views/variables.coffee", {}, (error, result)->
+    cscj.renderFile "#{__dirname}/views/variables.coffee", {}, (error, result)->
       should.exist error
       done()
 
@@ -54,7 +54,7 @@ describe "CoffeeScript Collection+JSON", ->
     message = "Just for fun"
     urlFor = (otps)->
       throw new Error message
-    cscj "#{__dirname}/views/helpers.coffee", {urlFor:urlFor}, (error, result)->
+    cscj.renderFile "#{__dirname}/views/helpers.coffee", {urlFor:urlFor}, (error, result)->
       should.exist error
       error.message.should.equal message
       done()

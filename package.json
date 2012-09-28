@@ -13,6 +13,7 @@
   "author": "Cameron Bytheway",
   "license": "BSD",
   "dependencies": {
+    "coffee-dsl": "~0.0.0",
     "coffee-script": "~1.3.3",
     "collection-json": "~0.0.0"
   },

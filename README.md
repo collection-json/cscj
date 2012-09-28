@@ -30,78 +30,77 @@ cscj is a little templating library that makes writing the Collection+JSON media
   @template ->
     @datum name: "firstName", prompt: "First Name"
     @datum name: "lastName", prompt: "Last Name"
-
 ```
 
 which would render
 
 ```json
 {
- "collection": {
-  "href": "http://localhost:5000",
-  "version": "1.0",
-  "error": {
-   "code": "404",
-   "message": "This is a test"
-  },
-  "links": [
-   {
-    "href": "http://localhost:5000",
-    "rel": "index"
+   "collection":{
+      "href":"http://localhost:5000",
+      "version":"1.0",
+      "error":{
+         "code":"404",
+         "message":"This is a test"
+      },
+      "links":[
+         {
+            "href":"http://localhost:5000",
+            "rel":"index"
+         }
+      ],
+      "items":[
+         {
+            "href":"http://localhost:5000/people/1",
+            "links":[
+               {
+                  "href":"http://localhost:5000/1/photos",
+                  "rel":"photos"
+               }
+            ],
+            "data":[
+               {
+                  "name":"firstName",
+                  "value":"Cameron",
+                  "prompt":"First Name"
+               },
+               {
+                  "name":"lastName",
+                  "value":"Bytheway",
+                  "prompt":"Last Name"
+               }
+            ]
+         }
+      ],
+      "queries":[
+         {
+            "href":"http://localhost:5000/people",
+            "rel":"people",
+            "data":[
+               {
+                  "name":"firstName",
+                  "prompt":"First Name"
+               },
+               {
+                  "name":"lastName",
+                  "prompt":"Last Name"
+               }
+            ]
+         }
+      ],
+      "template":{
+         "data":[
+            {
+               "name":"firstName",
+               "prompt":"First Name"
+            },
+            {
+               "name":"lastName",
+               "prompt":"Last Name"
+            }
+         ]
+      }
    }
-  ],
-  "items": [
-   {
-    "href": "http://localhost:5000/people/1",
-    "links": [
-     {
-      "href": "http://localhost:5000/1/photos",
-      "rel": "photos"
-     }
-    ],
-    "data": [
-     {
-      "name": "firstName",
-      "value": "Cameron",
-      "prompt": "First Name"
-     },
-     {
-      "name": "lastName",
-      "value": "Bytheway",
-      "prompt": "Last Name"
-     }
-    ]
-   }
-  ],
-  "queries": [
-   {
-    "href": "http://localhost:5000/people",
-    "rel": "people",
-    "data": [
-     {
-      "name": "firstName",
-      "prompt": "First Name"
-     },
-     {
-      "name": "lastName",
-      "prompt": "Last Name"
-     }
-    ]
-   }
-  ],
-  "template": {
-   "data": [
-    {
-     "name": "firstName",
-     "prompt": "First Name"
-    },
-    {
-     "name": "lastName",
-     "prompt": "Last Name"
-    }
-   ]
-  }
- }
 }
 ```
 
