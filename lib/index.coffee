@@ -1,31 +1,36 @@
 cscj = require("coffee-dsl").dsl()
 
-CollectionJSON = require "collection-json"
-
 collectionScope = (collection)->
   error: (options)->
-    collection.getError options
+    collection.error = options
   href: (value)->
     collection.href = value
   link: (options)->
-    collection.addLink options
+    collection.links ||= []
+    collection.links.push options
   item: (itemFun)->
-    item = collection.addItem href: collection.href
+    item = {}
+    collection.items ||= []
+    collection.items.push item
     itemFun.call itemScope(item)
   query: (queryFun)->
-    query = collection.addQuery href: collection.href, rel: "new-query"
+    query = {}
+    collection.queries ||= []
+    collection.queries.push query
     queryFun.call queryScope(query)
   template: (templateFun)->
-    template = collection.getTemplate href: collection.href
-    templateFun.call templateScope(template)
+    collection.template = {}
+    templateFun.call templateScope(collection.template)
 
 itemScope = (item)->
   href: (value)->
     item.href = value
   link: (options)->
-    item.addLink options
+    item.links ||= []
+    item.links.push options
   datum: (options)->
-    item.addDatum options
+    item.data ||= []
+    item.data.push options
 
 queryScope = (query)->
   href: (value)->
@@ -33,17 +38,20 @@ queryScope = (query)->
   rel: (value)->
     query.rel = value
   datum: (options)->
-    query.addDatum options
+    query.data ||= []
+    query.data.push options
 
 templateScope = (template)->
   href: (value)->
     template.href = value
   datum: (options)->
-    template.addDatum options
+    template.data ||= []
+    template.data.push options
 
 cscj.set "collection", (collectionFun)->
-  collection = CollectionJSON.create()
+  collection = {version:"1.0"}
+  root = {collection:collection}
   collectionFun.call collectionScope(collection)
-  collection.toJSON()
+  root
 
 module.exports = cscj
