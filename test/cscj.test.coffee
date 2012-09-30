@@ -4,7 +4,6 @@ should = require "should"
 cscj = require ".."
 
 expectations = (error, result)->
-  console.log error
   should.not.exist error
   should.exist result
   should.exist result.collection
