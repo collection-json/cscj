@@ -1,6 +1,6 @@
 {
   "name": "cscj",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Collection+JSON Views in CoffeeScript",
   "main": "index.js",
   "directories": {
