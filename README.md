@@ -222,7 +222,7 @@ Since the template is just CoffeeScript you can do some powerful stuff:
         @link rel: link.rel, href: link.href
 
       # Iterate the keys in the item and add them to the `data` array
-      for key, value in item
+      for key, value of item
         @datum name: key, value: value if not (key in ["href", "links"])
   ...
 ```
