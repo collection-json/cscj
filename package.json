@@ -11,7 +11,7 @@
   },
   "repository": "",
   "author": "Cameron Bytheway",
-  "license": "BSD",
+  "license": "MIT",
   "dependencies": {
     "coffee-dsl": "~0.0.0",
     "coffee-script": "~1.3.3"
