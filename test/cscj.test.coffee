@@ -17,44 +17,83 @@ expectations = (error, result)->
   result.collection.items.length.should.equal 1
 
 describe "CoffeeScript Collection+JSON", ->
-  it "should render a basic view", (done)->
 
-    cscj.renderFile "#{__dirname}/views/basic.coffee", {}, (error, result)->
-      expectations error, result
-      done()
+  describe "Scopes", ->
 
-  it "should render a view with variables", (done)->
+    describe "Collection", ->
+      it "should set the href"
+      it "should add an error"
+      it "should add a link"
+      it "should add an item"
+      it "should add a query"
+      it "should add a template"
 
-    cscj.renderFile "#{__dirname}/views/variables.coffee", {site: "http://localhost:5000"}, (error, result)->
-      expectations error, result
-      done()
+      it "should add multiple errors"
+      it "should add multiple links"
+      it "should add multiple items"
+      it "should add multiple queries"
+      it "should add multiple templates"
 
-  it "should render a view with helpers", (done)->
+    describe "Item", ->
+      it "should set the href"
+      it "should add a link"
+      it "should add a datum"
 
-    urlFor = (otps)->
-      "http://localhost:5000"
+      it "should add multiple links"
+      it "should add data"
 
-    options =
-      urlFor: urlFor
-      item:
-        firstName: "Cameron"
-        lastName: "Bytheway"
+    describe "Query", ->
+      it "should set the href"
+      it "should set the rel"
+      it "should add a datum"
 
-    cscj.renderFile "#{__dirname}/views/helpers.coffee", options, (error, result)->
-      expectations error, result
-      done()
+      it "should add data"
 
-  it "should give an error when a variable is not in scope", (done)->
-    cscj.renderFile "#{__dirname}/views/variables.coffee", {}, (error, result)->
-      should.exist error
-      done()
+    describe "Template", ->
+      it "should set the href"
+      it "should add a datum"
+
+      it "should add data"
 
 
-  it "should give an error when a helper throws an exception", (done)->
-    message = "Just for fun"
-    urlFor = (otps)->
-      throw new Error message
-    cscj.renderFile "#{__dirname}/views/helpers.coffee", {urlFor:urlFor}, (error, result)->
-      should.exist error
-      error.message.should.equal message
-      done()
+  describe "Render", ->
+    it "should render a basic view", (done)->
+
+      cscj.renderFile "#{__dirname}/views/basic.coffee", {}, (error, result)->
+        expectations error, result
+        done()
+
+    it "should render a view with variables", (done)->
+
+      cscj.renderFile "#{__dirname}/views/variables.coffee", {site: "http://localhost:5000"}, (error, result)->
+        expectations error, result
+        done()
+
+    it "should render a view with helpers", (done)->
+
+      urlFor = (otps)->
+        "http://localhost:5000"
+
+      options =
+        urlFor: urlFor
+        item:
+          firstName: "Cameron"
+          lastName: "Bytheway"
+
+      cscj.renderFile "#{__dirname}/views/helpers.coffee", options, (error, result)->
+        expectations error, result
+        done()
+
+    it "should give an error when a variable is not in scope", (done)->
+      cscj.renderFile "#{__dirname}/views/variables.coffee", {}, (error, result)->
+        should.exist error
+        done()
+
+    it "should give an error when a helper throws an exception", (done)->
+      message = "Just for fun"
+      urlFor = (otps)->
+        throw new Error message
+      cscj.renderFile "#{__dirname}/views/helpers.coffee", {urlFor:urlFor}, (error, result)->
+        should.exist error
+        error.message.should.equal message
+        done()

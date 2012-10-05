@@ -45,5 +45,7 @@ exports.Item = class Item extends exports.Data
 exports.Query = class Query extends exports.Data
   rel: (value)->
     @_obj.rel = value
+  prompt: (value)->
+    @_obj.prompt = value
 
 exports.Template = class Template extends exports.Data
